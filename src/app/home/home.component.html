@@ -1,0 +1,161 @@
+<div *ngIf="visibleOfWeatherScreenDetails">
+  
+    <br>
+    <label>
+        <h3 style="color: white; ">
+            {{ weatherRoot.name }}
+        </h3>
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" #checkBoxFavorites [checked]="favouriteStatus" style="display: none;" 
+            (change)="onSaveFavouriteStatus($event, weatherRoot.name);">
+
+        <img src='{{ imagePath }}' style="width: 30px; height: 30px; padding: 2px;">
+        <span style="color: white;"> {{ textFavouriteStatus }}</span>
+    </label>
+    <br>
+    
+    <br>
+    <div style="display: flex; justify-content: center;">
+        <div>
+            <img style="display: block; margin-left: auto; margin-right: auto;"
+                [src]="getPathOfWeatherIcon(weatherRoot.weather[0].icon)">
+            <br>
+            <div style="width: fit-content;">
+                <ul>
+                    <li style="display:inline-block; ">
+                        <label style="font-size: 80px; color: white; width: fit-content;">
+                            {{ weatherRoot.main.temp | number : '1.0-0' }}
+                        </label>
+                    </li>
+
+                    <li style="display:inline-block; border: 2px solid #fff; width: 30px; height: 30px;"
+                        [style.backgroundColor]="getTempBGColor1()">
+
+                        <label for="c" #label_C style="width: 30px; height: 30px; color: white; "
+                            [style.color]="getTempTextColor1()">
+
+                            <input type="radio" id="c" name="temp_units" value="C"
+                                style="width: fit-content; display: none;"
+                                (change)="onTempretureUnitChanged($event, weatherRoot.name)">
+                            ˚C
+                        </label>
+                    </li>
+                    <li style="display:inline-block; border: 2px solid #fff; width: 30px; height: 30px;"
+                        [style.backgroundColor]="getTempBGColor2()">
+
+                        <label for="f" #label_F style="width: 30px; height: 30px; color: white; "
+                            [style.color]="getTempTextColor2()">
+
+                            <input type="radio" id="f" name="temp_units" value="F"
+                                style="width: fit-content; display: none;"
+                                (change)="onTempretureUnitChanged($event, weatherRoot.name)">
+                            ˚F
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <label style="align-items: center; text-align: center; color: white; 
+                          display: flex; justify-content: center; font-size: 25px;">
+                {{ weatherRoot.weather[0].description | titlecase }}
+            </label>
+        </div>
+    </div>
+
+    <br><br>
+
+    <hr class="white-hr">
+
+    <div style="justify-content: center; padding-top: 10px; padding-bottom: 20px;">
+        <ul style=" display: block; margin-left: auto; margin-right: auto; width: fit-content;">
+            <li style="display:inline-block;">
+                <ul style="list-style-position: inside; padding-left: 0;">
+                    <li style="display:inline-block;">
+
+                        <img style="width: 35px; height: 35px;;
+                         vertical-align: super; "
+                            src="../assets/icons_weather_app/01_Home/background/Group_6_Copy/icon_temperature_info.svg">
+
+                    </li>
+                    <li style="display:inline-block; margin-left: 10px;">
+                        <span style="color: #fff; margin-top: 5px; font-size: small;">Min-Max</span>
+                        <br>
+                        <span style="font-size: larger; color: #fff;">
+                            {{ weatherRoot.main.temp_min | number : '1.0-0' }}° - {{ weatherRoot.main.temp_max | number
+                            : '1.0-0' }}°
+                        </span>
+                    </li>
+                </ul>
+            </li>
+
+            <li style="display:inline-block; ">
+                <ul style="list-style-position: inside; padding-left: 50px;">
+                    <li style="display:inline-block;">
+
+                        <img style="width: 35px; height: 35px;  vertical-align: super; "
+                            src="../assets/icons_weather_app/01_Home/background/Group 6/icon_precipitation_info.svg">
+
+                    </li>
+                    <li style="display:inline-block; margin-left: 10px;">
+                        <span style="color: #fff; margin-top: 5px; font-size: small;">Precipitation</span>
+                        <br>
+                        <span style="font-size: larger; color: #fff;"> {{ weatherRoot.clouds.all }}% </span>
+                    </li>
+                </ul>
+            </li>
+
+            <li style="display:inline-block; ">
+                <ul style="list-style-position: inside; padding-left: 50px;">
+                    <li style="display:inline-block;">
+
+                        <img style="width: 35px; height: 35px; vertical-align: super;"
+                            src="../assets/icons_weather_app/01_Home/background/Group 8/icon_humidity_info.svg">
+
+                    </li>
+                    <li style="display:inline-block; margin-left: 10px;">
+                        <span style="color: #fff; margin-top: 5px; font-size: small;">Humidity</span>
+                        <br>
+                        <span style="font-size: large; color: #fff;"> {{ weatherRoot.main.humidity }}% </span>
+                    </li>
+                </ul>
+            </li>
+
+            <li style="display:inline-block; ">
+                <ul style="list-style-position: inside; padding-left: 50px;">
+                    <li style="display:inline-block;">
+
+                        <img style="width: 35px; height: 35px; vertical-align: super;"
+                            src="../assets/icons_weather_app/01_Home/background/Group 9/icon_wind_info.svg">
+
+                    </li>
+                    <li style="display:inline-block; margin-left: 10px;">
+                        <span style="color: #fff; margin-top: 5px; font-size: small;"> Wind </span>
+                        <br>
+                        <span style="font-size: larger; color: #fff;"> {{ weatherRoot.wind.speed | number : '1.0-0' }}
+                            mph </span>
+                    </li>
+                </ul>
+
+            </li>
+            <li style="display:inline-block; ">
+
+                <ul style="list-style-position: inside; padding-left: 50px;">
+                    <li style="display:inline-block;">
+
+                        <img style="width: 35px; height: 35px; vertical-align: super;"
+                            src="../assets/icons_weather_app/01_Home/background/Group 10/icon_visibility_info.svg">
+
+                    </li>
+                    <li style="display:inline-block; margin-left: 10px;">
+                        <span style="color: #fff; margin-top: 5px; font-size: small;">Visibility</span>
+                        <br>
+                        <span style="font-size: larger; color: #fff;"> {{ weatherRoot.visibility }} mph</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>

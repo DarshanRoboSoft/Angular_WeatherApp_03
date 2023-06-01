@@ -1,0 +1,17 @@
+<div style="margin:10px">
+    <div class="modal-body">
+        {{ message }}
+    </div>
+
+    <div>
+        <div style="display: flex;  justify-content: center; align-items: center; margin-bottom: 20px;">
+            <button type="button" class="btn btn-light" (click)="decline()"
+                style="color: #000; width: 100px; margin-right: 20px;">
+                {{ btnCancelText }}
+            </button>
+            <button type="button" class="btn btn-warning" (click)="accept()" style="color: #fff; width: 100px; ">
+                {{ btnOkText }}
+            </button>
+        </div>
+    </div>
+</div>

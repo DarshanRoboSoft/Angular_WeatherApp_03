@@ -1,0 +1,5 @@
+.white-hr {
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    display: block;
+}

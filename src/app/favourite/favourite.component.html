@@ -1,0 +1,85 @@
+<div *ngIf="visiblilityRecentSearchTopbar"> 
+    <div style="height: 60px; padding-top: 20px; margin-bottom: 10px;">
+        <div style="width: fit-content; height: 40px; float: left;">
+            <label style="color:#fff; margin-top: 5px;">{{ rows.length}} of city added as favourite</label>
+        </div>
+
+        <div style="width: 600px; height: 40px; float: right; margin-bottom: 20px;">
+            <button style="float: right;" class="btn remove_all" (click)="openConfirmationDialog()">
+                Remove All
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div style="padding-bottom: 15px;">
+
+    <table class="table " style="color:#fff;  border-collapse: separate;  border-spacing: 0 1px;">
+
+        <tbody>
+            <tr class="table-bar" *ngFor="let row of rows; let i = index;">
+                <td style="border: none; width: 45%;">
+
+                    <label style="padding-left: 10px; margin-top: 15px;"> {{ rows[i].name }} </label>
+
+                </td>
+
+                <td style="border: none; width: 15%; ">
+
+                    <div>
+                        <div>
+                            <div style="width: fit-content; float: left; padding: 10px;">
+                                <img [src]="getPathOfWeatherIcon(rows[i].weather[0].icon)"
+                                     style="width: 40px; height: 40px; margin: 5px;">
+                            </div>
+
+                            <div style="float: left; padding: 10px; ">
+                                <span style="font-size: 30px; ">
+                                    {{ rows[i].main.temp | number: '1.0-0' }}
+                                </span>
+                                <span style="font-size:medium; ">°c </span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+                <td style="border: none; width: 35%;">
+
+                    <label style="padding-left: 20px; margin-top: 20px;">
+                        {{rows[i].weather[0].description | titlecase }}
+                    </label>
+
+                </td>
+
+                <td style="border: none; width: 5%;">
+
+                    <div
+                        style=" float: right; width: fit-content; margin-right: 10px; margin-top: 15px; margin-bottom: 10px;">
+                        <label>
+                            <input type="checkbox" style="display: none;" (change)="onSaveFavouriteStatus($event);"
+                                   (click)="deleteRow(i, rows[i].name)">
+
+                            <img src='{{ getFavouriteImagePath(i) }}' style="width: 30px; height: 30px; padding: 2px;">
+                        </label>
+                    </div>
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div style="text-align:center; margin-top: 10%;"  *ngIf="!visiblilityRecentSearchTopbar">
+    <ul
+        style="list-style: none; text-align: center; list-style-position: inside; padding: 0px;">
+        <li>
+            <img src="../assets/icons_weather_app/03_Favourite_blank/Group 38/Group 3/icon_nothing.svg"
+                style="width: 200px; height: 100px;">
+        </li>
+        <li>
+            <label style="color: #fff; font-size: large; margin-top: 30px;">No Favourites Added</label>
+        </li>
+    </ul>
+</div>

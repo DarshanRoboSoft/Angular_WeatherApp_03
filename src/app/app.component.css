@@ -1,0 +1,57 @@
+/* Tabs*/
+
+
+.nav-link {
+    color: #fff;
+    font-size: small;
+}
+
+.nav-link:hover {
+    color: yellow;
+}
+
+.nav-link.active {
+    color: yellow;
+    background-color: transparent;
+    border-color: transparent transparent #eee;
+    border-bottom: 2px solid !important;
+}
+
+/* Search Bar */
+
+.search-bar {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    color: #fff;
+}
+
+::placeholder {
+    color: #fff;
+}
+
+.search-bar div img {
+    width: 25px
+}
+
+.search-bar div {
+    border: 0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    cursor: pointer;
+}
+
